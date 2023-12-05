@@ -1,25 +1,26 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
   TextInput,
   Button,
   StyleSheet,
+  Image,
+  ScrollView
 } from 'react-native';
 import CustomButton from '../components/CustomButton'
 import CustomTextInput from '../components/CustomTextInput';
 
-class Signup extends Component {
-  state = {
-    username: '',
-    email: '',
-    password: '',
-  };
+const Signup = ({navigation}) =>{
+  const [password, setPassword] = useState('');
 
-  render() {
+  const handlePasswordChange = (text) => {
+    setPassword(text);
+  };
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Sign Up</Text>
+      <ScrollView contentContainerStyle={styles.container}>
+        <Image style={styles.logo} source={require('../assets/images/Frame.png')}/>
+        <Text style={styles.title}>Register</Text>
         <CustomTextInput 
       placeholder="Fullname"
       placeholderColor="#000"/>
@@ -30,20 +31,23 @@ class Signup extends Component {
       placeholder="Email"
       placeholderColor="#000"/>
       <CustomTextInput 
-      placeholder="Password"
-      placeholderColor="#000"/>
-        <CustomButton />
-      </View>
-    );
+    placeholder="Password"
+    secureTextEntry={true}
+    value={password}
+    onChangeText={handlePasswordChange}
+    placeholderColor="#000"/>
+        <CustomButton title='Next' bg='#DBC4F0' onPress={()=> navigation.navigate('Login')}/>
+      </ScrollView>
+    )
   }
-}
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     backgroundColor: '#FFDFDF',
-    padding: 16,
+    padding: 13,
   },
   title: {
     fontSize: 24,
@@ -61,10 +65,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     color: '#ffffff',
   },
-  button: {
-    borderRadius:15,
-    backgroundColor:'#FACBEA',
-  }
+  logo: {
+    left: '35%',
+    width: '30%',
+    height: 100,
+    marginBottom: 19,
+  },
 });
-
 export default Signup;

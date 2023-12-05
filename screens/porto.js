@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, View, Text, Image, StyleSheet, ScrollView, Button } from 'react-native';
+import { TouchableOpacity, View, Text, Image, StyleSheet, ScrollView, Button, navigation } from 'react-native';
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-const ProfilePage = () => {
+
+const Porto = ({navigation}) =>{
   const [count, setCount] = useState(0);
 
   const user = {
     name: 'Selly ',
     fullname: 'Selly Resty Wijayanti',
     email: 'sellyresty17@gmail.com',
-    bio: 'Halo semuanya, kenalin namaku selly resty wijayanti biasa dipanggil selly, here is my projects.',
+    bio: 'Halo semuanya, namaku selly resty wijayanti biasa dipanggil selly, Saya tertarik dalam bidang pemrograman, here is my projects.',
     title: 'My Projects',
   };
 
@@ -37,12 +38,23 @@ const ProfilePage = () => {
   );
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Image source={require('../assets/images/hns.jpeg')}style={styles.avatar} />
-      <Text style={styles.name}>{user.name}</Text>
+    <ScrollView>
+        <View style={styles.container}>
+          <View style={styles.top}>
+            <View style={styles.text_top}>
+            <Image style={styles.logo}
+            source={require('../assets/images/hns.jpeg')} /> 
+              <Text style={styles.text_headline}>
+                Portofolio
+              </Text>
+              <Text style={styles.name}>{user.name}</Text>
       <Text style={styles.fullname}>{user.fullname}</Text>
       <Text style={styles.email}>{user.email}</Text>
       <Text style={styles.bio}>{user.bio}</Text>
+            </View>
+  
+          </View>
+          <View style={styles.main_content}>
       <Button checkPrimaryCondition={true} btnStyle={styles.btnC} title="Contact me" textStyle={styles.txtBtnC} />
       <Text style={styles.title}>{user.title}</Text>
       <Image source={require('../assets/images/hc.png')}style={styles.project} />
@@ -61,6 +73,8 @@ const ProfilePage = () => {
               <Text style={styles.likesDesc}>Likes</Text>
             </View>
           </View>
+          </View>
+          </View>
     </ScrollView>
   );
 };
@@ -68,16 +82,31 @@ const ProfilePage = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 80,
+    gap: 24,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'pink',
   },
-  avatar: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    marginBottom: 20,
+  top: {
+    gap: 24,
+    paddingTop: 38,
+    paddingBottom: 20,
+    paddingHorizontal: 16,
+    alignItems: 'center'
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    borderRadius: 200,
+ },
+  text_top: {
+    gap: 8,
+    alignItems: 'center',
+  },
+  text_headline: {
+    fontSize: 23,
+    color: "#FFFFFF",
+    fontWeight: 500
   },
   name: {
     fontSize: 24,
@@ -86,7 +115,6 @@ const styles = StyleSheet.create({
   },
   fullname: {
     fontSize: 16,
-    color: 'gray',
     marginBottom: 10,
   },
   email: {
@@ -102,7 +130,6 @@ const styles = StyleSheet.create({
   title:{
     fontSize: 20,
     marginTop: 30,
-    right: 100,
     fontStyle: 'normal',
     marginBottom: 20,
   },
@@ -150,10 +177,10 @@ const styles = StyleSheet.create({
     marginTop:20,
   },
   hc: {
-    right: 80,
+    right: 20,
     padding: 8,
   }
 
 });
 
-export default ProfilePage;
+export default Porto;
